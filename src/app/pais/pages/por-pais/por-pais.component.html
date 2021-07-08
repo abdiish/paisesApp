@@ -21,30 +21,30 @@
     No se encontro ningún resultado con el termino: {{ termino }}
 </div>
 
-<div    *ngIf="!hayError"
+<div    *ngIf="paises.length > 0"
         class="row">
     <div class="col">
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>#</th>
-                    <th>Bandera</th>
-                    <th>Nombre</th>
-                    <th>Población</th>
-                    <th></th>
+                    <td>#</td>
+                    <td>Bandera</td>
+                    <td>Nombre del país</td>
+                    <td>Población</td>
+                    <td></td>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Bandera</td>
-                    <td>Nombre del país</td>
-                    <td>1212323</td>
-                    <td>
-                        <a href="#">Más infortmación
-
-                        </a>
-                    </td>
+                <tr *ngFor="let pais of paises; let i = index">
+                    <th>{{ i + 1 }}</th>
+                    <th>
+                        <img class="small-flag" [src]="pais.flag">
+                    </th>
+                    <th>{{ pais.name }}</th>
+                    <th>{{ pais.population | number}}</th>
+                    <th>
+                        <a [routerLink]="['/pais', pais.alpha2Code]">Más información</a>
+                    </th>
                 </tr>
             </tbody>
         </table>
